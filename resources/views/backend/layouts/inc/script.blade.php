@@ -12,6 +12,12 @@
 <script src="{{ asset('assets/backend') }}/js/base/search.js"></script>
 <script src="{{ asset('assets/backend') }}/js/base/settings.js"></script>
 <script src="{{ asset('assets/backend') }}/js/base/init.js"></script>
+
+<!--Toastr -->
+<script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+{!! Toastr::message() !!}
+<!--Toastr -->
+
 <!-- Template Base Scripts End -->
 
 <!-- Page Specific Scripts Start -->

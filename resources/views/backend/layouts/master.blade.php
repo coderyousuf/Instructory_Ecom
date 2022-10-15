@@ -45,5 +45,7 @@
 
     </div>
 @include('backend.layouts.inc.script')
+
+
   </body>
 </html>
