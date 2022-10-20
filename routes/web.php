@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\TestimonialController;
+use App\Http\Controllers\Frontend\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,8 +21,12 @@ use App\Http\Controllers\Backend\TestimonialController;
 // Route::get('/dashboard', function () {
 //     return view('backend.pages.dashboard');
 // });
-Route::get('/', function () {
-    return view('frontend.pages.home');
+// Route::get('/', function () {
+//     return view('frontend.pages.home');
+// });
+
+Route::prefix('')->group(function(){
+    Route::get('/', [HomeController::class, 'home'])->name('home');
 });
 
 Route::prefix('admin/')->group(function(){

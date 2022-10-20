@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
 use App\Http\Requests\TestimonialStoreRequest;
+use App\Http\Requests\TestimonialUpdateRequest;
 use Image;
 
 class TestimonialController extends Controller
@@ -71,9 +72,10 @@ class TestimonialController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
-        //
+        $testimonial = Testimonial::where('client_name_slug', $slug)->first();
+        return view('backend.pages.testimonial.edit', compact('testimonial'));
     }
 
     /**
@@ -83,10 +85,10 @@ class TestimonialController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+    // public function update(Request $request, $id)
+    // {
+    //     //
+    // }
 
     /**
      * Remove the specified resource from storage.
@@ -94,9 +96,38 @@ class TestimonialController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function update(TestimonialUpdateRequest $request, $slug)
     {
-        //
+        $testimonial = Testimonial::where('client_name_slug', $slug)->first();
+        $testimonial->update([
+            'client_name' => $request->client_name,
+            'client_name_slug' => Str::slug($request->client_name),
+            'client_designation' => $request->client_designation,
+            'client_message' => $request->client_message,
+            'is_active' => $request->filled('is_active')
+        ]);
+
+        $this->image_upload($request, $testimonial->id);
+
+        Toastr::success('Data Updated Successfully!!');
+        return redirect()->route('testimonial.index');
+    }
+
+    public function destroy($slug)
+    {
+
+        $testimonial = Testimonial::where('client_name_slug', $slug)->first();
+
+        if($testimonial->client_image){
+            $photo_location = 'uploads/testimonials/'.$testimonial->client_image;
+            unlink($photo_location);
+        }
+
+        $testimonial->delete();
+
+        Toastr::success('Data Deleted Successfully!!');
+        return redirect()->route('testimonial.index');
+
     }
 
     public function image_upload($request, $item_id)
