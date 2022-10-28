@@ -121,6 +121,15 @@
                         </span>
                     @enderror
                 </div>
+                <div class="col-12 mb-3">
+                    <label for="product-image" class="form-label">Product Multiple Image</label>
+                    <input type="file" class="form-control" multiple name="product_multiple_image[]">
+                    @error('product_multiple_image')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
                 <div class="col-6 mb-3 form-check form-switch">
                     <input class="form-check-input" type="checkbox" name="is_active" id="activeStatus" checked>
                     <label class="form-check-label" for="activeStatus">Active or Inactive</label>

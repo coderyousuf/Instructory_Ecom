@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductStoreRequest;
 use App\Http\Requests\ProductUpdateRequest;
+use App\Models\ProductImage;
 use Brian2694\Toastr\Facades\Toastr;
 use GuzzleHttp\Handler\Proxy;
 use Image;
@@ -70,6 +71,7 @@ class ProductController extends Controller
         // dd($product);
 
         $this->image_upload($request, $product->id);
+        $this->multiple_image_upload($request, $product->id);
         Toastr::success('Data Stored Successfully ');
         return redirect()->route('products.index');
     }
@@ -122,6 +124,7 @@ class ProductController extends Controller
         ]);
 
         $this->image_upload($request, $product->id);
+        $this->multiple_image_upload($request, $product->id);
         Toastr::success('Data updated successfully');
         return redirect()->route('products.index');
     }
@@ -161,6 +164,34 @@ class ProductController extends Controller
             $check=$product->update([
                 'product_image'=>$new_photo_name,
             ]);
+        }
+    }
+
+    public function multiple_image_upload($request, $product_id){
+        if($request->hasFile('product_multiple_image')){
+            $multiple_images=ProductImage::where('product_id', $product_id)->get();
+            foreach($multiple_images as $multiple_image){
+                if($multiple_image->product_multiple_photo_name != 'default_product.jpg'){
+                    $photo_location='public/uploads/product_photos/';
+                    $old_photo_location=$photo_location .
+                    $multiple_image->product_multiple_photo_name;
+                    unlink(base_path($old_photo_location));
+                }
+                $multiple_image->delete();
+            }
+            $flag=1;
+            foreach($request->file('product_multiple_image') as $single_photo){
+                $photo_location='public/uploads/product_photos/';
+                $new_photo_name=$product_id.'-'.$flag.'.'.
+                $single_photo->getClientOriginalExtension();
+                $new_photo_location=$photo_location . $new_photo_name;
+                Image::make($single_photo)->resize(600, 622)->save(base_path($new_photo_location), 40);
+                ProductImage::create([
+                    'product_id'=>$product_id,
+                    'product_multiple_image'=>$new_photo_name,
+                ]);
+                $flag++;
+            }
         }
     }
 }
