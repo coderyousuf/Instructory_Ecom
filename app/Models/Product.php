@@ -10,9 +10,16 @@ class Product extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $guarded=['id'];
+    protected $guarded = ['id'];
 
-    public function category(){
+
+    public function category()
+    {
         return $this->belongsTo(Category::class, 'category_id', 'id');
+    }
+
+    public function productImages()
+    {
+        return $this->hasMany(ProductImage::class);
     }
 }
