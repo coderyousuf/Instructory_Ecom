@@ -16,7 +16,7 @@
                             <ul class="dropdown_style">
                                 <li><a href="login.html">Login</a></li>
                                 <li><a href="register.html">Register</a></li>
-                                <li><a href="cart.html">Cart</a></li>
+                                <li><a href="{{ route('cart.page') }}">Cart</a></li>
                                 <li><a href="checkout.html">Checkout</a></li>
                                 <li><a href="wishlist.html">wishlist</a></li>
                             </ul>
@@ -47,7 +47,7 @@
                                 <ul class="dropdown_style">
                                     <li><a href="{{ route('shop.page') }}">Shop Page</a></li>
                                     <li><a href="single-product.html">Product Details</a></li>
-                                    <li><a href="cart.html">Shopping cart</a></li>
+                                    <li><a href="{{ route('cart.page') }}">Shopping cart</a></li>
                                     <li><a href="checkout.html">Checkout</a></li>
                                     <li><a href="wishlist.html">Wishlist</a></li>
                                 </ul>
@@ -57,7 +57,7 @@
                                 <ul class="dropdown_style">
                                     <li><a href="about.html">About Page</a></li>
                                     <li><a href="single-product.html">Product Details</a></li>
-                                    <li><a href="cart.html">Shopping cart</a></li>
+                                    <li><a href="{{ route('cart.page') }}">Shopping cart</a></li>
                                     <li><a href="checkout.html">Checkout</a></li>
                                     <li><a href="wishlist.html">Wishlist</a></li>
                                     <li><a href="faq.html">FAQ</a></li>
@@ -85,7 +85,7 @@
                                         <img src="{{ asset('assets/frontend') }}/images/cart/1.jpg" alt="">
                                     </div>
                                     <div class="cart-content">
-                                        <a href="cart.html">Pure Nature Product</a>
+                                        <a href="{{ route('cart.page') }}">Pure Nature Product</a>
                                         <span>QTY : 1</span>
                                         <p>$35.00</p>
                                         <i class="fa fa-times"></i>
@@ -96,7 +96,7 @@
                                         <img src="{{ asset('assets/frontend') }}/images/cart/3.jpg" alt="">
                                     </div>
                                     <div class="cart-content">
-                                        <a href="cart.html">Pure Nature Product</a>
+                                        <a href="{{ route('cart.page') }}">Pure Nature Product</a>
                                         <span>QTY : 1</span>
                                         <p>$35.00</p>
                                         <i class="fa fa-times"></i>
@@ -111,40 +111,26 @@
                         <li>
                             <a href="javascript:void(0);"><i class="flaticon-shop"></i> <span>3</span></a>
                             <ul class="cart-wrap dropdown_style">
+
+                                @php
+                                    $carts = \Gloudemans\Shoppingcart\Facades\Cart::content();
+                                    $total_price = \Gloudemans\Shoppingcart\Facades\Cart::subtotal();
+                                @endphp
+
+                                @foreach ($carts as $item)
                                 <li class="cart-items">
                                     <div class="cart-img">
-                                        <img src="{{ asset('assets/frontend') }}/images/cart/1.jpg" alt="">
+                                        <img src="{{ asset('uploads/product_photos') }}/{{ $item->options->product_image }}" alt="" class="img-fluid rounded" style="width: 60px">
                                     </div>
                                     <div class="cart-content">
-                                        <a href="cart.html">Pure Nature Product</a>
-                                        <span>QTY : 1</span>
-                                        <p>$35.00</p>
-                                        <i class="fa fa-times"></i>
+                                        <a href="{{ route('cart.page') }}">{{ $item->name }}</a>
+                                        <span>QTY : {{ $item->qty }}</span>
+                                        <p>${{ $item->qty*$item->price }}</p>
+                                        <a href="{{ route('removefrom.cart', ['cart_id' => $item->rowId]) }}"><i class="fa fa-times"></i></a>
                                     </div>
                                 </li>
-                                <li class="cart-items">
-                                    <div class="cart-img">
-                                        <img src="{{ asset('assets/frontend') }}/images/cart/3.jpg" alt="">
-                                    </div>
-                                    <div class="cart-content">
-                                        <a href="cart.html">Pure Nature Product</a>
-                                        <span>QTY : 1</span>
-                                        <p>$35.00</p>
-                                        <i class="fa fa-times"></i>
-                                    </div>
-                                </li>
-                                <li class="cart-items">
-                                    <div class="cart-img">
-                                        <img src="{{ asset('assets/frontend') }}/images/cart/2.jpg" alt="">
-                                    </div>
-                                    <div class="cart-content">
-                                        <a href="cart.html">Pure Nature Product</a>
-                                        <span>QTY : 1</span>
-                                        <p>$35.00</p>
-                                        <i class="fa fa-times"></i>
-                                    </div>
-                                </li>
-                                <li>Subtotol: <span class="pull-right">$70.00</span></li>
+                                @endforeach
+                                <li>Subtotol: <span class="pull-right">${{ $total_price }}</span></li>
                                 <li>
                                     <button>Check Out</button>
                                 </li>
@@ -176,7 +162,7 @@
                                 <ul aria-expanded="false">
                                     <li><a href="{{ route('shop.page') }}">Shop Page</a></li>
                                     <li><a href="single-product.html">Product Details</a></li>
-                                    <li><a href="cart.html">Shopping cart</a></li>
+                                    <li><a href="{{ route('cart.page') }}">Shopping cart</a></li>
                                     <li><a href="checkout.html">Checkout</a></li>
                                     <li><a href="wishlist.html">Wishlist</a></li>
                                 </ul>
@@ -186,7 +172,7 @@
                                 <ul aria-expanded="false">
                                   <li><a href="about.html">About Page</a></li>
                                   <li><a href="single-product.html">Product Details</a></li>
-                                  <li><a href="cart.html">Shopping cart</a></li>
+                                  <li><a href="{{ route('cart.page') }}">Shopping cart</a></li>
                                   <li><a href="checkout.html">Checkout</a></li>
                                   <li><a href="wishlist.html">Wishlist</a></li>
                                   <li><a href="faq.html">FAQ</a></li>
