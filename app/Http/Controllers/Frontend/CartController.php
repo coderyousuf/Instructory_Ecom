@@ -100,3 +100,5 @@ class CartController extends Controller
         return redirect()->back();
     }
 }
+
+//inmage insert crud in laravel?

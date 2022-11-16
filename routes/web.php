@@ -12,6 +12,7 @@ use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\Auth\RegisterController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CustomerController;
+use App\Models\Order;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,6 +58,13 @@ Route::prefix('')->group(function(){
         /*checkout page*/
         Route::get('checkout', [CheckoutController::class, 'checkoutPage'])->name('customer.checkoutpage');
         Route::post('placeorder', [CheckoutController::class, 'placeOrder'])->name('customer.placeorder');
+
+        Route::get('email', function(){
+            $order=Order::whereId(1)->with(['billing', 'orderdetails'])->get();
+            return view('frontend.mail.purchaseconfirm', [
+                'order_details'=>$order
+            ]);
+        });
     });
 });
 
