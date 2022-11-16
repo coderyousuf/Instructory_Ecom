@@ -29,5 +29,5 @@
 {!! Toastr::message() !!}
 <!--Toastr -->
 
-@stack('admin_script')
+@stack('frontend_script')
 <!-- Page Specific Scripts End -->
