@@ -7,7 +7,8 @@
                     <div class="col-lg-12 col-12">
                         <div class="footer-top-text text-center">
                             <ul>
-                                <li><a href="home.html">home</a></li>
+                                <li><a href="{{ route('home') }}">home</a></li>
+                                <li><a href="{{ route('shop.page') }}">Shop Page</a></li>
                                 <li><a href="#">our story</a></li>
                                 <li><a href="#">feed shop</a></li>
                                 <li><a href="blog.html">how to eat blog</a></li>
@@ -25,9 +26,9 @@
                 <div class="col-lg-2 col-md-3 col-sm-12">
                     <div class="footer-icon">
                         <ul class="d-flex">
-                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="https://www.facebook.com/yousufpathan1120"><i class="fa fa-facebook"></i></a></li>
                             <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                            <li><a href="https://www.linkedin.com/in/yousuf-ali-467058179/"><i class="fa fa-linkedin"></i></a></li>
                             <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
                         </ul>
                     </div>
