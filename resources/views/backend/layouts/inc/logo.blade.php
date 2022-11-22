@@ -1,6 +1,6 @@
 <!-- Logo Start -->
 <div class="logo position-relative">
-    <a href="Dashboard.html">
+    <a href="{{ route('admin.dashboard') }}">
       <!-- Logo can be added directly -->
       <!-- <img src="img/logo/logo-white.svg" alt="logo" /> -->
 

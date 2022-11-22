@@ -2,7 +2,7 @@
 <div class="user-container d-flex">
     <a href="#" class="d-flex user position-relative" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       <img class="profile" alt="profile" src="{{ asset('assets/backend') }}/img/profile/profile-11.jpg" />
-      <div class="name">Admin</div>
+      <div class="name">MD: YOUSUF ALI</div>
     </a>
     <div class="dropdown-menu dropdown-menu-end user-menu wide">
       <div class="row mb-1 ms-0 me-0">
