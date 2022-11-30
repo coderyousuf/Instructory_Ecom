@@ -14,7 +14,9 @@ use App\Http\Controllers\Frontend\Auth\RegisterController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CustomerController;
 use App\Http\Controllers\Backend\CustomerController as BackendCustomerController;
+use App\Http\Controllers\StripePaymentController;
 use App\Models\Order;
+use GuzzleHttp\Psr7\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -90,4 +92,11 @@ Route::prefix('admin/')->group(function(){
 
 });
 
+// Route::middleware('auth:api')->get('/user', function(Request $request){
+//     return $request->user();
+// });
 
+
+// Route::post('stripe', [StripePaymentController::class, 'stripePost']);
+Route::get('payment-form', [StripePaymentController::class, 'form'])->name('form.payment');
+Route::post('make/payment', [StripePaymentController::class, 'makePayment'])->name('make.payment');
