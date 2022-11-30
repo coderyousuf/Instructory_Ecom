@@ -36,7 +36,7 @@
             <div class="row">
                 <div class="col-lg-3 col-md-7 col-sm-6 col-6">
                     <div class="logo">
-                        <a href="index.html">
+                        <a href="{{ route('home') }}">
                     <img src="{{ asset('assets/frontend') }}/images/logo.png" alt="">
                     </a>
                     </div>
@@ -45,7 +45,7 @@
                     <nav class="mainmenu">
                         <ul class="d-flex">
                             <li class="active"><a href="{{ route('home') }}">Home</a></li>
-                            <li><a href="about.html">About</a></li>
+                            <li><a href="{{ route('about') }}">About</a></li>
                             <li>
                                 <a href="javascript:void(0);">Shop <i class="fa fa-angle-down"></i></a>
                                 <ul class="dropdown_style">
@@ -74,7 +74,7 @@
                                     <li><a href="blog-details.html">blog Details</a></li>
                                 </ul>
                             </li>
-                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="{{ route('contact') }}">Contact</a></li>
                         </ul>
                     </nav>
                 </div>

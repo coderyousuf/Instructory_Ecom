@@ -12,7 +12,7 @@
                                 <li><a href="#">our story</a></li>
                                 <li><a href="#">feed shop</a></li>
                                 <li><a href="blog.html">how to eat blog</a></li>
-                                <li><a href="contact.html">contact</a></li>
+                                <li><a href="{{ route('contact') }}">contact</a></li>
                             </ul>
                         </div>
                     </div>
@@ -29,7 +29,7 @@
                             <li><a href="https://www.facebook.com/yousufpathan1120"><i class="fa fa-facebook"></i></a></li>
                             <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                             <li><a href="https://www.linkedin.com/in/yousuf-ali-467058179/"><i class="fa fa-linkedin"></i></a></li>
-                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            <li><a href=""><i class="fa fa-google-plus"></i></a></li>
                         </ul>
                     </div>
                 </div>
@@ -41,9 +41,9 @@
                 <div class="col-lg-3 col-md-8 col-sm-12">
                     <div class="footer-adress">
                         <ul>
-                            <li><a href="#"><span>Email:</span> domain@gmail.com</a></li>
-                            <li><a href="#"><span>Tel:</span> 0131234567</a></li>
-                            <li><a href="#"><span>Adress:</span> 52 Web Bangale , Adress line2 , ip:3105</a></li>
+                            <li><a href="#"><span>Email:</span>yousuf2mail@gmail.com</a></li>
+                            <li><a href="#"><span>Mobile:</span>01710977899</a></li>
+                            <li><a href="#"><span>Adress:</span>Dhaka Bangladesh, Mirpur 12 DOHS</a></li>
                         </ul>
                     </div>
                 </div>

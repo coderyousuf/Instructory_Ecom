@@ -14,6 +14,7 @@ use App\Http\Controllers\Frontend\Auth\RegisterController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CustomerController;
 use App\Http\Controllers\Backend\CustomerController as BackendCustomerController;
+use App\Http\Controllers\Frontend\HeaderController;
 use App\Http\Controllers\StripePaymentController;
 use App\Models\Order;
 use GuzzleHttp\Psr7\Request;
@@ -38,6 +39,11 @@ use GuzzleHttp\Psr7\Request;
 
 Route::prefix('')->group(function(){
     Route::get('/', [HomeController::class, 'home'])->name('home');
+
+/* static pages */
+    Route::get('/about', [HeaderController::class, 'about'])->name('about');
+    Route::get('/contact', [HeaderController::class, 'contact'])->name('contact');
+
     Route::get('/shop', [HomeController::class, 'shopPage'])->name('shop.page');
     Route::get('/single-product/{product_slug}', [HomeController::class, 'productDetails'])->name('productdetail.page');
     Route::get('/shopping-cart', [CartController::class, 'cartPage'])->name('cart.page');
